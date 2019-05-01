@@ -20,12 +20,12 @@ module Mocks
 	                     "name": "' + university + '",
                              "types": ["Education"],
                              "links": ["http://example.org/test"],
-                             "aliases: ["testing"],
+                             "aliases" : ["testing"],
                              "acronyms": ["TST"],
                              "wikipedia_url": "http://example.org/wikipedia/wiki/test",
                              "labels": [{ "iso639": "id", "label": "' + university + '" }],
                              "country": { "country_code": "US", 
-                                          "country_name": "' + country + '" }
+                                          "country_name": "' + country + '" },
                              "external_ids": { "GRID": { "prefered": "grid.test.123ab" } }
                             }', 
                      headers: {'Content-Type' => 'application/json'})

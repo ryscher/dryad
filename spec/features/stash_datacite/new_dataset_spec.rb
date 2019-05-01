@@ -143,7 +143,6 @@ RSpec.feature 'NewDataset', type: :feature do
       curr_author.save		  
       country_list = curr_affil.fee_waiver_countries
 
-byebug
       # ##############################
       # Abstract
       abstract = find_blank_ckeditor_id('description_abstract')
