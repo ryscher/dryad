@@ -23,7 +23,7 @@ Capybara.asset_host = 'http://localhost:33000'
 # https://docs.travis-ci.com/user/chrome#sandboxing
 Capybara.register_driver :selenium_chrome_headless do |app|
   browser_options = ::Selenium::WebDriver::Chrome::Options.new
-  browser_options.args << '--headless'
+#  browser_options.args << '--headless'
   browser_options.args << '--no-sandbox'
   browser_options.args << '--window-size=1280,1024'
   browser_options.args << '--disable-gpu' if Gem.win_platform?

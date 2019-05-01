@@ -8,7 +8,7 @@ module Mocks
     end
 
     # rubocop:disable Metrics/MethodLength
-    def stub_ror_id_lookup(university: 'University of Testing', country: 'United States of America')
+    def stub_ror_id_lookup(ror_id: 'https://ror.org/TEST', university: 'University of Testing', country: 'United States of America')
       # Mock a request for a specific ROR Organization
       stub_request(:get, %r{api\.ror\.org/organizations/.+})
         .with(
@@ -16,7 +16,7 @@ module Mocks
             'Content-Type' => 'application/json'
           }
         ).to_return(status: 200, body: {
-          'id': 'https://ror.org/TEST',
+          'id': ror_id,
           'name': university,
           'types': ['Education'],
           'links': ['http://example.org/test'],
@@ -29,7 +29,7 @@ module Mocks
         }.to_json, headers: {})
     end
 
-    def stub_ror_name_lookup
+    def stub_ror_name_lookup(ror_id: 'https://ror.org/TEST', university: 'University of Testing', country: 'United States of America')
       # Mock a ROR Organization query
       stub_request(:get, %r{api\.ror\.org/organizations\?query.*})
         .with(
@@ -37,19 +37,19 @@ module Mocks
             'Content-Type' => 'application/json'
           }
         ).to_return(status: 200, body: {
-          'number_of_results': 1,
+          'number_of_results': 2,
           'time_taken': 3,
           'items': [
             {
-              'id': 'https://ror.org/TEST',
-              'name': 'University of Testing',
+              'id': ror_id,
+              'name': university,
               'types': ['Education'],
               'links': ['http://example.org/test'],
               'aliases': ['testing'],
               'acronyms': ['TST'],
               'wikipedia_url': 'http://example.org/wikipedia/wiki/test',
-              'labels': [{ 'iso639': 'id', 'label': 'University of Testing' }],
-              'country': { 'country_code': 'US', 'country_name': 'United States of America' },
+              'labels': [{ 'iso639': 'id', 'label': university }],
+              'country': { 'country_code': 'US', 'country_name': country },
               'external_ids': { 'GRID': { 'prefered': 'grid.test.123' } }
             },
             {
