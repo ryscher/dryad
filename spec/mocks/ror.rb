@@ -15,18 +15,20 @@ module Mocks
           headers: {
             'Content-Type' => 'application/json'
           }
-        ).to_return(status: 200, body: {
-          'id': ror_id,
-          'name': university,
-          'types': ['Education'],
-          'links': ['http://example.org/test'],
-          'aliases': ['testing'],
-          'acronyms': ['TST'],
-          'wikipedia_url': 'http://example.org/wikipedia/wiki/test',
-          'labels': [{ 'iso639': 'id', 'label': university }],
-          'country': { 'country_code': 'US', 'country_name': country },
-          'external_ids': { 'GRID': { 'prefered': 'grid.test.123' } }
-        }.to_json, headers: {})
+         ).to_return(status: 200, 
+                     body: '{"id": "' + ror_id + '",
+	                     "name": "' + university + '",
+                             "types": ["Education"],
+                             "links": ["http://example.org/test"],
+                             "aliases: ["testing"],
+                             "acronyms": ["TST"],
+                             "wikipedia_url": "http://example.org/wikipedia/wiki/test",
+                             "labels": [{ "iso639": "id", "label": "' + university + '" }],
+                             "country": { "country_code": "US", 
+                                          "country_name": "' + country + '" }
+                             "external_ids": { "GRID": { "prefered": "grid.test.123ab" } }
+                            }', 
+                     headers: {'Content-Type' => 'application/json'})
     end
 
     def stub_ror_name_lookup(ror_id: 'https://ror.org/TEST', university: 'University of Testing', country: 'United States of America')
